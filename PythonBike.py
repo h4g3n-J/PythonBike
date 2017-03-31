@@ -2,10 +2,9 @@
 
 from time import sleep, clock
 import threading
-#~ import RPi.GPIO as GPIO
-import tkinter
+import RPi.GPIO as GPIO
 
-'''GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 StateLock = threading.Lock()
 
 class GPIO_Switch:
@@ -124,60 +123,10 @@ class GPIO_Target:
 				GPIO.output(self.GPIO_Number, GPIO.HIGH)
 			else:
 				GPIO.output(self.GPIO_Number, GPIO.LOW)
-'''		
-class HelloWorld:
-	def __init__(self):
-		self.Name = "Jochen"
 		
-	def output(self, name):
-		print("Hello World")
-		print(name)
-		
-	def Systemzeit(self, position):
-		print("Systemzeit ermittelt")
-		self.zeit = clock()
-		
-	def Dauer(self, x, y):
-		self.X = x
-		self.Y = y
-		print("Zeitberechnung gestartet")
-		self.Z = self.Y - self.X		
-		print("Betätigungsdauer z: ", self.z)
-
-class MyApp(tkinter.Frame):
-	def __init__(self, master=None):
-		tkinter.Frame.__init__(self, master)
-		self.pack()
-		self.createWidgets()
-
-	def createWidgets(self):
-		
-		#~ Kill Switch
-		self.KillSwitch = tkinter.Checkbutton(self)
-		self.KillSwitch["text"] = "Kill-Switch"
-		#~ self.KillSwitch["command"] = self.quit
-		self.KillSwitch.pack(fill="x")
-		
-		#~ Engine Start
-		self.EngineStart = tkinter.Button(self)
-		self.EngineStart["text"] = "Start"
-		#~ self.EngineStart["command"] = a.output
-		#~ self.EngineStart.bind("<ButtonPress-1>", a.output)
-		self.EngineStart.bind("<ButtonPress-1>", a.Systemzeit)
-		self.EngineStart.bind("<ButtonRelease-1>", b.Systemzeit)
-		#~ self.EngineStart.bind("<ButtonRelease-1>", b.get)
-		#~ c.Dauer(a,b)
-		self.EngineStart.pack(fill="x")
-				
-		#~ Exit-Button
-		self.ok = tkinter.Button(self)
-		self.ok["text"] = "Exit"
-		self.ok["command"] = self.quit
-		self.ok.pack(fill="x")
-			
 if __name__ == '__main__':
 
-	'''KillSwitchIn = GPIO_Switch(25)
+	KillSwitchIn = GPIO_Switch(25)
 	KillSwitchOut = GPIO_Target(4)
 	EngineStartIn = GPIO_DipSwitch(8)
 	EngineStartOut = GPIO_Target(17)
@@ -186,12 +135,4 @@ if __name__ == '__main__':
 	thread1 = threading.Thread(target=KillSwitchIn.Standard_DipSwitch, args=())
 	thread1.start()
 	thread2 = threading.Thread(target=KillSwitchOut.Standard_IO, args=(KillSwitchIn,))
-	thread2.start()'''
-	
-	a = HelloWorld()
-	b = HelloWorld()
-	c = HelloWorld()
-	
-	root = tkinter.Tk()
-	app = MyApp(root)
-	app.mainloop()
+	thread2.start()
